@@ -1,6 +1,6 @@
 {
   "name": "osm-gpx",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "retrieve GPX data from the OSM API",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,7 @@
   "author": "Tom MacWright <tom@macwright.org>",
   "license": "BSD",
   "dependencies": {
-    "togeojson": "0.1.0"
+    "togeojson": "0.1.0",
+    "basicrequest": "0.0.0"
   }
 }

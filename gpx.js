@@ -3,33 +3,16 @@ var osmGpx = require('./');
 window.osmGpx = osmGpx;
 
 },{"./":2}],2:[function(require,module,exports){
-var toGeoJSON = require('togeojson');
+var toGeoJSON = require('togeojson'),
+    xml = require('basicrequest');
 var base = 'http://api.openstreetmap.org/api/0.6/trackpoints?bbox=';
 
 function osmGpx(bbox, pages, callback) {
-
     if (!callback) {
         callback = pages;
         pages = 1;
     }
-
-    function xml(url, callback) {
-        var xhr = new XMLHttpRequest(),
-            twoHundred = /^20\d$/;
-        xhr.onreadystatechange = function() {
-            if (4 == xhr.readyState && 0 !== xhr.status) {
-                if (twoHundred.test(xhr.status)) callback(null, xhr);
-                else callback(xhr, null);
-            }
-        };
-        xhr.crossOrigin = true;
-        xhr.onerror = function(e) { return callback(e, null); };
-        xhr.open('GET', url, true);
-        xhr.send();
-    }
-
     var gj = null;
-
     function run(page) {
         xml(base + bbox + '&page=' + page, function(err, res) {
             if (err) return callback(err, null);
@@ -60,7 +43,21 @@ osmGpx.base = function(x) {
 
 if (typeof module !== 'undefined') module.exports = osmGpx;
 
-},{"togeojson":3}],3:[function(require,module,exports){
+},{"basicrequest":3,"togeojson":4}],3:[function(require,module,exports){
+module.exports = function(url, callback) {
+    var xhr = new XMLHttpRequest(), twoHundred = /^20\d$/;
+    xhr.onreadystatechange = function() {
+        if (4 == xhr.readyState && 0 !== xhr.status) {
+            if (twoHundred.test(xhr.status)) callback(null, xhr);
+            else callback(xhr, null);
+        }
+    };
+    xhr.onerror = function(e) { return callback(e, null); };
+    xhr.open('GET', url, true);
+    xhr.send();
+};
+
+},{}],4:[function(require,module,exports){
 toGeoJSON = (function() {
     var removeSpace = (/\s*/g),
         trimSpace = (/^\s*|\s*$/g),
