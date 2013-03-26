@@ -1,2 +1,2 @@
 all: index.js
-	browserify req.js > gpx.js
+	browserify index.js -s osmGpx > gpx.js

@@ -1,8 +1,5 @@
-;(function(e,t,n,r){function i(r){if(!n[r]){if(!t[r]){if(e)return e(r);throw new Error("Cannot find module '"+r+"'")}var s=n[r]={exports:{}};t[r][0](function(e){var n=t[r][1][e];return i(n?n:e)},s,s.exports)}return n[r].exports}for(var s=0;s<r.length;s++)i(r[s]);return i})(typeof require!=="undefined"&&require,{1:[function(require,module,exports){
-var osmGpx = require('./');
-window.osmGpx = osmGpx;
-
-},{"./":2}],2:[function(require,module,exports){
+(function(e){if("function"==typeof bootstrap)bootstrap("osmgpx",e);else if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else if("undefined"!=typeof ses){if(!ses.ok())return;ses.makeOsmGpx=e}else"undefined"!=typeof window?window.osmGpx=e():global.osmGpx=e()})(function(){var define,ses,bootstrap,module,exports;
+return (function(e,t,n){function r(n,i){if(!t[n]){if(!e[n]){var s=typeof require=="function"&&require;if(!i&&s)return s(n,!0);throw new Error("Cannot find module '"+n+"'")}var o=t[n]={exports:{}};e[n][0](function(t){var i=e[n][1][t];return r(i?i:t)},o,o.exports)}return t[n].exports}for(var i=0;i<n.length;i++)r(n[i]);return r})({1:[function(require,module,exports){
 var toGeoJSON = require('togeojson'),
     xml = require('basicrequest');
 var base = 'http://api.openstreetmap.org/api/0.6/trackpoints?bbox=';
@@ -43,7 +40,7 @@ osmGpx.base = function(x) {
 
 if (typeof module !== 'undefined') module.exports = osmGpx;
 
-},{"basicrequest":3,"togeojson":4}],3:[function(require,module,exports){
+},{"basicrequest":2,"togeojson":3}],2:[function(require,module,exports){
 module.exports = function(url, callback) {
     var xhr = new XMLHttpRequest(), twoHundred = /^20\d$/;
     xhr.onreadystatechange = function() {
@@ -57,7 +54,7 @@ module.exports = function(url, callback) {
     xhr.send();
 };
 
-},{}],4:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 toGeoJSON = (function() {
     var removeSpace = (/\s*/g),
         trimSpace = (/^\s*|\s*$/g),
@@ -225,5 +222,6 @@ toGeoJSON = (function() {
 
 if (typeof module !== 'undefined') module.exports = toGeoJSON;
 
-},{}]},{},[1])
+},{}]},{},[1])(1)
+});
 ;

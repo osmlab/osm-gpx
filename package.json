@@ -1,6 +1,6 @@
 {
   "name": "osm-gpx",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "retrieve GPX data from the OSM API",
   "main": "index.js",
   "scripts": {
